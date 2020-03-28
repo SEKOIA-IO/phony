@@ -2491,12 +2491,6 @@ var dict = map[string][]string{
 		"Ap Lottip",
 		"Tresstrong",
 	},
-	"event.action": []string{
-		"Viewed",
-		"Purchased",
-		"Watched",
-		"Clicked",
-	},
 	"http.method": []string{
 		"GET",
 		"POST",

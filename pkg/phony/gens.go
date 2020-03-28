@@ -74,4 +74,7 @@ var gens = map[string]func(g *Generator, args []string) (string, error){
 	"double": func(g *Generator, args []string) (string, error) {
 		return strconv.FormatFloat(rand.NormFloat64()*1000, 'f', 4, 64), nil
 	},
+	"choice": func(g *Generator, args []string) (string, error) {
+		return args[rand.Intn(len(args))], nil
+	},
 }

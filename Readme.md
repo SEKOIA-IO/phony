@@ -72,6 +72,15 @@ $ echo "{{avatar}}" | phony --max 1
 https://s3.amazonaws.com/uifaces/faces/twitter/areus/128.jpg
 ```
 
+### Choice
+
+Select randomly one of the arguments
+
+```bash
+$ echo "{{choice:Viewed,Purchased,Watched,Clicked}}" | phony --max 1
+Watched
+```
+
 ### Color
 
 Generate a textual name of a color
@@ -142,15 +151,6 @@ Generate an email address
 ```bash
 $ echo "{{email}}" | phony --max 1
 areus@example.org
-```
-
-### Event action
-
-Generate an event action
-
-```bash
-$ echo "{{event.action}}" | phony --max 1
-Viewed
 ```
 
 ### Http method
