@@ -1,6 +1,7 @@
 package phony
 
 import (
+	"errors"
 	"fmt"
 	"math/rand"
 	"strconv"
@@ -76,5 +77,30 @@ var gens = map[string]func(g *Generator, args []string) (string, error){
 	},
 	"choice": func(g *Generator, args []string) (string, error) {
 		return args[rand.Intn(len(args))], nil
+	},
+	"randint": func(g *Generator, args []string) (string, error) {
+		if len(args) < 1 {
+			return "", errors.New("Supply an upperbound")
+		}
+
+		var max, min, input int
+		var err error
+		for _, arg := range args {
+			input, err = strconv.Atoi(arg)
+
+			if err != nil {
+				return "", err
+			}
+
+			if min > input {
+				min = input
+			}
+
+			if max < input {
+				max = input
+			}
+		}
+
+		return strconv.Itoa(min + rand.Intn(max-min)), nil
 	},
 }

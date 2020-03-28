@@ -270,6 +270,24 @@ $ echo "{{product.name}}" | phony --max 1
 Namdax
 ```
 
+### Random integer
+
+Generate a random integer
+
+Arguments:
+- the minimum value of the random integer (optional)
+- the maximum value of the random integer (mandatory)
+
+```bash
+$ echo "{{randint:100}}" | phony --max 1
+71
+```
+
+```bash
+$ echo "{{randint:20,50}}" | phony --max 1
+34
+```
+
 ### State
 
 Generate a USA state
