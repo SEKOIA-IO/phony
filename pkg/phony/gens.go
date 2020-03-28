@@ -64,11 +64,11 @@ var gens = map[string]func(g *Generator, args []string) (string, error){
 	"mac.address": func(g *Generator, args []string) (string, error) {
 		return fmt.Sprintf("%x:%x:%x:%x:%x:%x", rand.Intn(255), rand.Intn(255), rand.Intn(255), rand.Intn(255), rand.Intn(255), rand.Intn(255)), nil
 	},
-	"latitude": func(g *Generator, args []string) (string, error) {
+	"geo.latitude": func(g *Generator, args []string) (string, error) {
 		lattitude := (rand.Float64() * 180) - 90
 		return strconv.FormatFloat(lattitude, 'f', 6, 64), nil
 	},
-	"longitude": func(g *Generator, args []string) (string, error) {
+	"geo.longitude": func(g *Generator, args []string) (string, error) {
 		longitude := (rand.Float64() * 360) - 180
 		return strconv.FormatFloat(longitude, 'f', 6, 64), nil
 	},

@@ -203,7 +203,7 @@ $ echo "{{ksuid}}" | phony --max 1
 Generate a geographical latitude
 
 ```bash
-$ echo "{{latitude}}" | phony --max 1
+$ echo "{{geo.latitude}}" | phony --max 1
 -64.007899
 ```
 
@@ -212,7 +212,7 @@ $ echo "{{latitude}}" | phony --max 1
 Generate a geographical longitude
 
 ```bash
-$ echo "{{longitude}}" | phony --max 1
+$ echo "{{geo.longitude}}" | phony --max 1
 -176.537284
 ```
 
