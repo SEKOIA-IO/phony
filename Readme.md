@@ -153,6 +153,18 @@ $ echo "{{email}}" | phony --max 1
 areus@example.org
 ```
 
+### Geohash
+
+Generate a [geohash](https://en.wikipedia.org/wiki/Geohash)
+
+Arguments:
+- the precision of the geohash (optional; default to 12)
+
+```bash
+$ echo "{{geo.hash:10}}" | phony --max 1
+zvtfye3v6b
+```
+
 ### Http method
 
 Generate a HTTP method

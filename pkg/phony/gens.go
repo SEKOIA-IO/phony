@@ -72,6 +72,25 @@ var gens = map[string]func(g *Generator, args []string) (string, error){
 		longitude := (rand.Float64() * 360) - 180
 		return strconv.FormatFloat(longitude, 'f', 6, 64), nil
 	},
+	"geo.hash": func(g *Generator, args []string) (string, error) {
+		var precision = 12
+		if len(args) > 0 {
+			var err error
+			precision, err = strconv.Atoi(args[0])
+
+			if err != nil {
+				return "", err
+			}
+		}
+
+		chars := []rune("0123456789bcdefghjkmnpqrstuvwxyz")
+		ret := make([]rune, precision)
+		for i := range ret {
+			ret[i] = chars[rand.Intn(len(chars))]
+		}
+
+		return string(ret), nil
+	},
 	"double": func(g *Generator, args []string) (string, error) {
 		return strconv.FormatFloat(rand.NormFloat64()*1000, 'f', 4, 64), nil
 	},
