@@ -17,6 +17,7 @@ var usage = `
     [--tick d]
     [--max n]
     [--list]
+    [--choice-line]
 
     phony -h | --help
     phony -v | --version
@@ -33,6 +34,7 @@ var usage = `
     echo '{{ name }}' | phony --max 1
 
   Options:
+    --choice-line   select randomly one line as template on each tick
     --list          list all available generators
     --max n         generate data up to n [default: -1]
     --tick d        generate data every d [default: 10ms]
@@ -68,16 +70,35 @@ func main() {
 
 	tmpl := readAll(os.Stdin)
 
+	var f func() string
+	if args["--choice-line"].(bool) {
+		f = compileChoice(strings.Split(string(tmpl), "\n"))
+	} else {
+		f = compile(string(tmpl))
+	}
+
 	ticker := time.NewTicker(d)
 	defer ticker.Stop()
-	f := compile(string(tmpl))
-	it := 0
 
+	it := 0
 	for range ticker.C {
 		fmt.Fprintf(os.Stdout, "%s", f())
 		if it++; -1 != max && it == max {
 			return
 		}
+	}
+}
+
+func compileChoice(tmpls []string) func() string {
+	fs := make([]func() string, len(tmpls))
+	for i, tmpl := range tmpls {
+		fs[i] = compile(fmt.Sprintf("%s\n", tmpl))
+	}
+
+	nb_fs := len(fs)
+	return func() string {
+		choice := rand.Intn(nb_fs - 1)
+		return fs[choice]()
 	}
 }
 
