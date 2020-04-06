@@ -97,7 +97,10 @@ func compileChoice(tmpls []string) func() string {
 
 	nb_fs := len(fs)
 	return func() string {
-		choice := rand.Intn(nb_fs - 1)
+		var choice int
+		if nb_fs > 1 {
+			choice = rand.Intn(nb_fs - 1)
+		}
 		return fs[choice]()
 	}
 }
