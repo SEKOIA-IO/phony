@@ -1,6 +1,6 @@
 package main
 
-import "github.com/yields/phony/pkg/phony"
+import "github.com/SEKOIA-IO/phony/pkg/phony"
 import "github.com/tj/docopt"
 import "math/rand"
 import "io/ioutil"
